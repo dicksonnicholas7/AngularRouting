@@ -1,0 +1,20 @@
+<h1> Template-driven Form Example:</h1>
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+        <label>Play Id:</label>
+        <input type="text" id="id" name="id" [(ngModel)]="play.id" required />
+    </p>
+    <p>
+        <label>Play Title:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="play.title" 
+        required minlength="5"
+        #title="ngModel" >
+    </p>
+    <div *ngIf="title.invalid && (title.dirty || title.touched)" class="alert alert-danger">
+        <div *ngIf="title.errors.minlength">
+            Name must be at least 5 characters long.
+        </div>
+    </div>
+    
+    <button type="submit" [disabled]="!form.valid">Submit</button>
+</form>
